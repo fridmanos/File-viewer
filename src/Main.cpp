@@ -17,8 +17,7 @@ typedef std::map<int, str_t> pairmap_t;
 pairmap_t /* Returns a std::map, constructed like the following: <index, file_name>*/
 display_directory_content()
 {
-	//chdir(path.c_str());
-	Directory dir(get_current_dir_name());
+	Directory dir( get_current_dir_name() );
 	int count=1;
 	
 	pairmap_t content_map;
