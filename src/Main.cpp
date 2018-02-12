@@ -11,7 +11,7 @@ typedef std::pair<int, str_t> pair_t;
 typedef std::map<int, str_t> pairmap_t;
 
 /* Clearing the tty */
-#define CLEAR (std::cout << "\033[2J\033[;H") // \033[2J\033[;H is an ANSI escape sequence to clear the screen, ANSI is supported on most OS's
+#define CLEAR (std::cout << "\033[2J\033[;H") //ANSI escape sequence to clear tty
 
 
 pairmap_t /* Returns a std::map, constructed like the following: <index, file_name>*/
