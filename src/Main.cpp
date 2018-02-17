@@ -31,18 +31,18 @@ main(int argc, char *argv[])
 		if ( option == 0 ) break;
 		if ( option > file_v.size() ) {std::cerr << "Invalid input"; continue;}
 		
-		if ( file_v[option][0] != '/' ) /* If it doesn't start with a '/', we know it's a file */
+		if ( file_v[option-1][0] != '/' ) /* If it doesn't start with a '/', we know it's a file */
 		{ 
 			if (prog_info.editor != NULL) {
 				CLEAR;
-				str_t command = str_t(prog_info.editor) + " " + str_t(file_v[option]);
+				str_t command = str_t(prog_info.editor) + " " + str_t(file_v[option-1]);
 				if ( system(command.c_str()) == -1 ) /* If opening file with specified editor failed, break */
 					break;
 			}
 			else
 			{
 				CLEAR;
-				display_file_content(file_v[option]);
+				display_file_content(file_v[option-1]);
 				
 				str_t temp;
 				std::cout << "Return (\\n)";
@@ -55,7 +55,7 @@ main(int argc, char *argv[])
 		}
 		else 
 		{
-			str_t path = get_current_dir_name() + file_v[option]; chdir( path.c_str() ); //Change current directory
+			str_t path = get_current_dir_name() + file_v[option-1]; chdir( path.c_str() ); //Change current directory
 			CLEAR;
 			file_v = display_directory_content();
 		}
