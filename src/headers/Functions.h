@@ -39,13 +39,13 @@ parse_command_line(int argc, char **argv)
 	return optinfo;
 }
 
-std::map<int, std::string> /* Returns a std::map, constructed like the following: <index, file_name>*/
+std::vector<std::string>
 display_directory_content()
 {
 	Directory dir( get_current_dir_name() );
 	int count=1;
 	
-	std::map<int, std::string> content_map;
+	std::vector<std::string> file_name_v;
 	std::cout << "* Viewing contents of " << get_current_dir_name() << " *\n\n";
 	
 	while ((dir.read()) != NULL)
@@ -54,17 +54,17 @@ display_directory_content()
 		{
 			std::string dir_name = "/" + dir.name() + "/";
 			std::cout << "* " << count << ": " << dir_name << '\n'; /* Prepend directories with slash */
-			content_map.insert(std::pair<int, std::string>( count, dir_name ));
+			file_name_v.push_back(dir_name);
 		} 									
 		else if (dir.type() == Types::FILE) 
 		{
 			std::cout << "* " << count << ": " << dir.name() << '\n';
-			content_map.insert(std::pair<int, std::string>( count, dir.name() ));
+			file_name_v.push_back( dir.name() );
 		}
 		count++;
 	}
 	
-	return content_map;
+	return file_name_v;
 }
 
 void 
@@ -83,3 +83,4 @@ display_file_content(const std::string file_name) /* Displays the content of a f
 }
 
 #endif
+
