@@ -1,6 +1,7 @@
 # File-viewer
 A simple program to navigate directories and output files.
 <hr>
+
 # Some gotchas:
 
 Note that the function get_current_dir_name() used in the program is a GNU extension and may not work on all compilers.
