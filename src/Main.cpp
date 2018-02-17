@@ -1,7 +1,7 @@
 /* Program to navigate directories */
 #include <iostream>
 #include <string>
-#include <map>
+#include <vector>
 #include <unistd.h> //for get_current_dir() and chdir()
 #include "headers/Functions.h"
 
@@ -19,7 +19,7 @@ main(int argc, char *argv[])
 		chdir( get_current_dir_name() );
 		
 	CLEAR;
-	std::map<int, str_t> map = display_directory_content();
+	std::vector<std::string> file_v = display_directory_content();
 	
 	/* Program loop */
 	for(;;)
@@ -29,20 +29,20 @@ main(int argc, char *argv[])
 		std::cin >> option;
 		
 		if ( option == 0 ) break;
-		if ( option > map.size() ) {std::cerr << "Invalid input"; continue;}
+		if ( option > file_v.size() ) {std::cerr << "Invalid input"; continue;}
 		
-		if ( map[option][0] != '/' ) /* If it doesn't start with a '/', we know it's a file */
+		if ( file_v[option][0] != '/' ) /* If it doesn't start with a '/', we know it's a file */
 		{ 
 			if (prog_info.editor != NULL) {
 				CLEAR;
-				str_t command = str_t(prog_info.editor) + " " + str_t(map[option]);
+				str_t command = str_t(prog_info.editor) + " " + str_t(file_v[option]);
 				if ( system(command.c_str()) == -1 ) /* If opening file with specified editor failed, break */
 					break;
 			}
 			else
 			{
 				CLEAR;
-				display_file_content(map[option]);
+				display_file_content(file_v[option]);
 				
 				str_t temp;
 				std::cout << "Return (\\n)";
@@ -55,11 +55,12 @@ main(int argc, char *argv[])
 		}
 		else 
 		{
-			str_t path = get_current_dir_name() + map [option]; chdir( path.c_str() ); //Change current directory
+			str_t path = get_current_dir_name() + file_v[option]; chdir( path.c_str() ); //Change current directory
 			CLEAR;
-			map = display_directory_content();
+			file_v = display_directory_content();
 		}
 	}
 	
 	return 0;
 }
+
