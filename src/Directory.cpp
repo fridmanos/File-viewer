@@ -1,4 +1,4 @@
-#include "Directory.h"
+#include "headers/Directory.h"
 
 Directory::Directory(std::string pathname)
 	: pathname_m(pathname)
