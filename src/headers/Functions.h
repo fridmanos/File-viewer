@@ -2,7 +2,7 @@
 #define FUNCTIONS_H
 
 #include <iostream>
-#include <map>
+#include <vector>
 #include <fstream>
 #include <unistd.h>
 #include "Directory.h"
