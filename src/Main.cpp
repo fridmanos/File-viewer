@@ -39,7 +39,7 @@ main(int argc, char *argv[])
 				if ( system(command.c_str()) == -1 ) /* If opening file with specified editor failed, break */
 					break;
 			}
-			
+			else
 			{
 				CLEAR;
 				display_file_content(map[option]);
@@ -49,7 +49,6 @@ main(int argc, char *argv[])
 				std::cin.ignore(); //Flush newline char
 				getline(std::cin, temp);
 			}
-			
 			CLEAR;
 			display_directory_content();
 			continue;
