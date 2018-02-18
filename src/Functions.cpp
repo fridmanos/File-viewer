@@ -13,7 +13,7 @@
 info 
 parse_command_line(int argc, char **argv)
 {
-	info optinfo {NULL, NULL};
+	struct info optinfo {NULL, NULL};
 	int opt;
 	
 	while ((opt = getopt(argc, argv, "e:p:h")) != -1)
