@@ -8,11 +8,10 @@ struct info
     const char *editor;
 };
 
-info parse_command_line(int argc, char **argv);
+extern info parse_command_line(int argc, char **argv);
 
-std::vector<std::string> display_directory_content();
+extern std::vector<std::string> display_directory_content();
 
-void display_file_content(const std::string file_name);
+extern void display_file_content(const std::string file_name);
 
 #endif
-
