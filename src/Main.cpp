@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <unistd.h> //for get_current_dir() and chdir()
+#include <stdlib.h> //for system
 #include "headers/Functions.h"
 
 typedef std::string str_t;
