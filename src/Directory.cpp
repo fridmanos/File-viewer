@@ -11,7 +11,7 @@ Directory::~Directory()
 }
 dirent* Directory::read()
 {
-	ent = readdir(dir); return ent;
+	return ((ent = readdir(dir)));
 }
 std::string Directory::name() 
 {	
