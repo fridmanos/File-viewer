@@ -10,13 +10,15 @@
 #define COLOR_GREEN "\x1b[32m"
 #define COLOR_RESET "\x1b[0m" //used to reset the color
 
+static short show_hidden = false;
+
 info 
 parse_command_line(int argc, char **argv)
 {
 	struct info optinfo {NULL, NULL};
 	int opt;
 	
-	while ((opt = getopt(argc, argv, "e:p:h")) != -1)
+	while ((opt = getopt(argc, argv, "e:p:sh")) != -1)
 	{
 		switch (opt) {
 			case 'e': 
@@ -25,9 +27,12 @@ parse_command_line(int argc, char **argv)
 			case 'p':
 				optinfo.path = optarg;
 				break;
+			case 's':
+				show_hidden = true;
+				break;
 			case 'h':
 				std::cout << "A simple program for navigating directories and outputting files.\n";
-				std::cout << "Optional switches [-p PATH] [-e EDITOR]\n";
+				std::cout << "Optional switches [-p PATH] [-e EDITOR] [-s SHOW_DOT_FILES]\n";
 				exit(1);
 			default:
 				exit(1);
@@ -50,12 +55,15 @@ display_directory_content()
 		if (dir.type() == Types::DIR) 
 		{
 			std::string dir_name = "/" + dir.name() + "/";
-			
+			if (!show_hidden && dir_name[1] == '.')
+				continue;
 			std::cout << "* " << count << ": " << COLOR_BLUE << dir_name.c_str() << COLOR_RESET << "\n";
 			file_name_v.push_back(dir_name);
 		} 									
 		else if (dir.type() == Types::FILE) 
 		{
+			if (!show_hidden && dir.name()[0] == '.')
+				continue;
 			std::cout << "* " << count << ": " << dir.name() << '\n';
 			file_name_v.push_back( dir.name() );
 		}
