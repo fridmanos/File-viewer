@@ -10,7 +10,7 @@
 #define COLOR_GREEN "\x1b[32m"
 #define COLOR_RESET "\x1b[0m" //used to reset the color
 
-static short show_hidden = false;
+static bool show_hidden = false;
 
 info 
 parse_command_line(int argc, char **argv)
