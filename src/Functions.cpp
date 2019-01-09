@@ -32,7 +32,7 @@ parse_command_line(int argc, char **argv)
 				break;
 			case 'h':
 				std::cout << "A simple program for navigating directories and outputting files.\n";
-				std::cout << "Optional switches [-p PATH] [-e EDITOR] [-s SHOW_DOT_FILES]\n";
+				std::cout << "Optional switches [-p \"path\"] [-e \"editor\"] [-s SHOW_DOT_FILES=on]\n";
 				exit(1);
 			default:
 				exit(1);
